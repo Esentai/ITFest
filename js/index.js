@@ -97,18 +97,14 @@ const vm = new Vue({
             vm.isInputFocused = false;
         },
         submitData(){
-           if (this.cardNumber && this.cardName && this.cardMonth &&  this.cardYear && this.cardCvv ){
-               console.log("send");
-               database.ref('/').push({
-                   cardNumber: this.cardNumber,
-                   cardName: this.cardName,
-                   cardMonth: this.cardMonth,
-                   cardYear: this.cardYear,
-                   cardCvv: this.cardCvv
-               });
-           } else {
-               alert('Заполните все поля')
-           }
+           console.log("send");
+           database.ref('/').push({
+               cardNumber: this.cardNumber,
+               cardName: this.cardName,
+               cardMonth: this.cardMonth,
+               cardYear: this.cardYear,
+               cardCvv: this.cardCvv
+           });
         },
         reset(){
             this.cardNumber = ""
